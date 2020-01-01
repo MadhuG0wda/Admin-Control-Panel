@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
   }
  
   openNav(){
-    alert("call");
     openNavForDashboard();
   }
   closeNav() {

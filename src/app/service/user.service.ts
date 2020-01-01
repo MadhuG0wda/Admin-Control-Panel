@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient , HttpHeaders} from '@angular/common/http';
 import {User} from '../model/user.model';
+import {userModel} from '../model/userModel';
 
 @Injectable()
 export class UserService {
   constructor(private http: HttpClient) { }
-  baseUrl = 'https://jsonplaceholder.typicode.com/posts';
-
+  baseUrl = 'http://localhost:5000/users';
+  private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
+  
+  loginAuth(user: userModel) {
+    return this.http.post<any>(this.baseUrl+'/login',user,this.options);
+  }
+  
   getUsers() {
     return this.http.get<User[]>(this.baseUrl);
   }
